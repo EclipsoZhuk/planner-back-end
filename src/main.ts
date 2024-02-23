@@ -7,10 +7,11 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.use(cookieParser());
   app.enableCors({
-    origin: false,
+    origin: [process.env.URL_FRONTEND],
+    credentials: true,
     exposedHeaders: 'set-cookie',
   });
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
